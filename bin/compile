@@ -38,13 +38,14 @@ tar xzf v0.3.0.tar.gz
 tar xzf v0.31.tar.gz
 cd nginx-1.11.2
 #./configure
-./configure --prefix=$HOME/nginx --with-debug --with-http_ssl_module --with-http_image_filter_module --add-module=../ngx_devel_kit-0.3.0 --add-module=../set-misc-nginx-module-0.31
+./configure --prefix=$HOME/app/nginx --with-debug --with-http_ssl_module --with-http_image_filter_module --add-module=../ngx_devel_kit-0.3.0 --add-module=../set-misc-nginx-module-0.31
 make
 
 # create hierarchy with only needed files
 mkdir -p $cache_dir/nginx/bin
 mkdir -p $cache_dir/nginx/conf
 mkdir -p $cache_dir/nginx/logs
+
 cp $cache_dir/nginx-1.11.2/objs/nginx $cache_dir/nginx/bin/nginx
 cp $cache_dir/nginx-1.11.2/conf/nginx.conf $cache_dir/nginx/conf/nginx.conf
 cp $cache_dir/nginx-1.11.2/conf/mime.types $cache_dir/nginx/conf/mime.types
