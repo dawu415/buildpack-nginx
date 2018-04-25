@@ -19,6 +19,14 @@ echo $cache_dir
 echo $buildpack_dir
 env
 
+# Install system dependencies
+apt-get update -y
+apt-get install -y libpcre3 libpcre3-dev
+apt-get install -y gzip
+apt-get install -y openssl libssl-dev libperl-dev
+apt-get install -y libgd-dev
+apt-get install -y build-essential
+
 # download and build nginx
 mkdir -p $cache_dir
 cd $cache_dir
