@@ -4,9 +4,11 @@
 pwd
 ls -la $HOME
 
+nginxPort=8086
+
 # create nginx conf file with PORT and HOME directory from cloudfoundry environment variables
 mv $HOME/nginx/conf/nginx.conf $HOME/nginx/conf/nginx.conf.original
-sed "s|\(^\s*listen\s*\)80|\18086|" $HOME/nginx/conf/nginx.conf.original > $HOME/nginx/conf/nginx.conf
+sed "s|\(^\s*listen\s*\)80|\1$nginxPort|" $HOME/nginx/conf/nginx.conf.original > $HOME/nginx/conf/nginx.conf
 sed -i "s|\(^\s*root\s*\)html|\1$HOME/public|" $HOME/nginx/conf/nginx.conf
 
 # debug output
