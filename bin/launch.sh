@@ -16,7 +16,7 @@ cat $HOME/nginx/conf/nginx.conf
 echo "Create Nginx Log folder"
 mkdir -p /home/vcap/nginx/logs
 
-echo "Start nginx web server: " + $HOME/nginx/bin/nginx
+echo "Start nginx web server: " + $HOME/nginx/sbin/nginx
 # start nginx web server
 #$HOME/nginx/sbin/nginx -c $HOME/nginx/conf/nginx.conf -p $HOME/nginx
-$HOME/nginx/bin/nginx -c $HOME/nginx/conf/nginx.conf -p $HOME/nginx
+$HOME/nginx/sbin/nginx -c $HOME/nginx/conf/nginx.conf -p $HOME/nginx
