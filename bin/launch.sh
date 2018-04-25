@@ -13,4 +13,4 @@ sed -i "s|\(^\s*root\s*\)html|\1$HOME/public|" $HOME/nginx/conf/nginx.conf
 cat $HOME/nginx/conf/nginx.conf
 
 # start nginx web server
-$HOME/nginx/bin/nginx -c $HOME/nginx/conf/nginx.conf -p $HOME/nginx
+$HOME/nginx/sbin/nginx -c $HOME/nginx/conf/nginx.conf -p $HOME/nginx
