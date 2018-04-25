@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+
+if [[ ( -f $1/index.html || -f $1/index.htm ) ]]
+then
+  echo "Static" && exit 0
+else
+  exit 1
+fi

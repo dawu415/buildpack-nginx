@@ -1,0 +1,57 @@
+#!/usr/bin/env bash
+# bin/compile <build-dir> <cache-dir>
+
+shopt -s dotglob    # enables commands like 'mv *' to see hidden files
+set -e              # exit immediately if any command fails (non-zero status)
+
+# buildpack debug output
+pwd
+ls -la
+
+# create local variables pointing to key paths
+app_files_dir=$1
+cache_dir=$2
+buildpack_dir=$(cd $(dirname $0) && cd .. && pwd)
+
+# buildpack debug output
+echo $app_files_dir
+echo $cache_dir
+echo $buildpack_dir
+env
+
+# download and build nginx
+mkdir -p $cache_dir
+cd $cache_dir
+wget http://nginx.org/download/nginx-1.11.2.tar.gz
+wget https://github.com/simpl/ngx_devel_kit/archive/v0.3.0.tar.gz
+wget https://github.com/openresty/set-misc-nginx-module/archive/v0.31.tar.gz
+tar xzf nginx-1.11.2.tar.gz
+tar xzf v0.3.0.tar.gz
+tar xzf v0.31.tar.gz
+cd nginx-1.11.2
+#./configure
+./configure --prefix=/usr/local/nginx --with-debug --with-http_ssl_module --with-http_image_filter_module --add-module=../ngx_devel_kit-0.3.0 --add-module=../set-misc-nginx-module-0.31
+make
+
+# create hierarchy with only needed files
+mkdir -p $cache_dir/nginx/bin
+mkdir -p $cache_dir/nginx/conf
+mkdir -p $cache_dir/nginx/logs
+cp $cache_dir/nginx-1.11.2/objs/nginx $cache_dir/nginx/bin/nginx
+cp $cache_dir/nginx-1.11.2/conf/nginx.conf $cache_dir/nginx/conf/nginx.conf
+cp $cache_dir/nginx-1.11.2/conf/mime.types $cache_dir/nginx/conf/mime.types
+
+# move applicaiton files into public directory
+mkdir -p $cache_dir/public
+mv $app_files_dir/* $cache_dir/public/
+# copy nginx error template
+cp $cache_dir/nginx-1.11.2/html/50x.html $cache_dir/public/50x.html
+
+# put everything in place for droplet creation
+mv $buildpack_dir/bin/launch.sh $app_files_dir/
+mv $cache_dir/public $app_files_dir/
+mv $cache_dir/nginx $app_files_dir/
+
+# ensure manifest not in public directory
+if [ -f $cache_dir/public/manifest.yml ]; then rm $cache_dir/public/manifest.yml; fi
+if [ -f $cache_dir/public/stackato.yml ]; then rm $cache_dir/public/stackato.yml; fi
