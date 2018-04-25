@@ -21,11 +21,11 @@ env
 
 # Install system dependencies
 #apt-get update -y
-sudo apt-get install -y libpcre3 libpcre3-dev
-sudo apt-get install -y gzip
-sudo apt-get install -y openssl libssl-dev libperl-dev
-sudo apt-get install -y libgd-dev
-sudo apt-get install -y build-essential
+apt-get install libpcre3 libpcre3-dev
+apt-get install gzip
+apt-get install openssl libssl-dev libperl-dev
+apt-get install libgd-dev
+apt-get install build-essential
 
 # download and build nginx
 mkdir -p $cache_dir
