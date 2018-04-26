@@ -12,9 +12,10 @@ sed -i "s|\(^\s*root\s*\)html|\1$HOME/public|" $HOME/nginx/conf/nginx.conf
 # debug output
 #cat $HOME/nginx/conf/nginx.conf
 
-echo "Start nginx web server: " + $HOME/nginx/bin/nginx -c $HOME/nginx/conf/nginx.conf -p $HOME/nginx
+echo "Start nginx web server: "
 # start nginx web server
 $HOME/nginx/bin/nginx -c $HOME/nginx/conf/nginx.conf -p $HOME/nginx
 
 cat /home/vcap/app/nginx/logs/error.log
-echo "Nginx Started" + $HOME/nginx/bin/nginx -c $HOME/nginx/conf/nginx.conf -p $HOME/nginx
+ls -la $HOME/public
+#echo "Nginx Started" + $HOME/nginx/bin/nginx -c $HOME/nginx/conf/nginx.conf -p $HOME/nginx
