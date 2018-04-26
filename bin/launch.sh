@@ -4,7 +4,7 @@
 pwd
 ls -la $HOME
 
-nginxPort=8086
+nginxPort=$PORT
 
 # create nginx conf file with PORT and HOME directory from cloudfoundry environment variables
 mv $HOME/nginx/conf/nginx.conf $HOME/nginx/conf/nginx.conf.original
@@ -13,10 +13,6 @@ sed -i "s|\(^\s*root\s*\)html|\1$HOME/public|" $HOME/nginx/conf/nginx.conf
 
 # debug output
 cat $HOME/nginx/conf/nginx.conf
-
-#create nginx logs folder
-#echo "Create Nginx Log folder"
-#mkdir -p /home/vcap/app/nginx/logs
 
 echo "Start nginx web server: " + $HOME/nginx/bin/nginx
 # start nginx web server

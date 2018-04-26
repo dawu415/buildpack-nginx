@@ -1,13 +1,7 @@
 #!/usr/bin/env bash
-# bin/release <build-dir>
 
-echo -e "---\ndefault_process_types:\n  nginx -p \$PWD -c ./nginx.conf"
-
-
-#!/usr/bin/env bash
-
-#cat <<YAML
-#---
-#default_process_types:
-#  web: sh launch.sh
-#YAML
+cat <<YAML
+---
+default_process_types:
+  web: sh launch.sh
+YAML
