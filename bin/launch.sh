@@ -15,10 +15,9 @@ sed -i "s|\(^\s*root\s*\)html|\1$HOME/public|" $HOME/nginx/conf/nginx.conf
 cat $HOME/nginx/conf/nginx.conf
 
 #create nginx logs folder
-echo "Create Nginx Log folder"
-mkdir -p /home/vcap/app/nginx/logs
+#echo "Create Nginx Log folder"
+#mkdir -p /home/vcap/app/nginx/logs
 
-echo "Start nginx web server: " + $HOME/nginx/sbin/nginx
+echo "Start nginx web server: " + $HOME/nginx/bin/nginx
 # start nginx web server
-#$HOME/nginx/bin/nginx -c $HOME/nginx/conf/nginx.conf -p $HOME/nginx
 $HOME/nginx/bin/nginx -c $HOME/nginx/conf/nginx.conf -p $HOME/nginx
