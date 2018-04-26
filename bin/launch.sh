@@ -16,4 +16,5 @@ echo "Start nginx web server: " + $HOME/nginx/bin/nginx -c $HOME/nginx/conf/ngin
 # start nginx web server
 $HOME/nginx/bin/nginx -c $HOME/nginx/conf/nginx.conf -p $HOME/nginx
 
+cat /home/vcap/app/nginx/logs/error.log
 echo "Nginx Started" + $HOME/nginx/bin/nginx -c $HOME/nginx/conf/nginx.conf -p $HOME/nginx
